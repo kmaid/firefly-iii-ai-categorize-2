@@ -1,0 +1,32 @@
+{
+  "name": "firefly-iii-ai-categorize-2",
+  "version": "2.0.0",
+  "description": "AI-powered transaction categorization for Firefly III",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "generate:api": "bunx openapi-ts -i ./openapi/firefly-iii.yaml -o src/generated -c @hey-api/client-fetch",
+    "lint": "eslint src",
+    "lint:knip": "knip",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.6.0",
+    "@openrouter/sdk": "^0.3.10",
+    "express": "^4.22.1",
+    "pino": "^9.14.0",
+    "pino-pretty": "^13.1.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@hey-api/openapi-ts": "^0.89.2",
+    "@types/express": "^5.0.6",
+    "bun-types": "^1.3.5",
+    "eslint": "^9.39.2",
+    "knip": "^5.77.0",
+    "prettier": "^3.7.4",
+    "typescript-eslint": "^8.50.1"
+  }
+}
