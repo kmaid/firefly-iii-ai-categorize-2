@@ -1,0 +1,19 @@
+name: Deploy to Portainer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Portainer
+        uses: kmaid/portainer-stack-redeploy-action@main
+        with:
+          portainerUrl: ${{ secrets.PORTAINER_URL }}
+          accessToken: ${{ secrets.PORTAINER_ACCESS }}
+          stackId: 51
+          endpointId: 1
+          repositoryReferenceName: "refs/heads/main"

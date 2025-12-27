@@ -1,0 +1,26 @@
+networks:
+  web:
+    external: true
+  default:
+
+services:
+  firefly-ai-categorize:
+    container_name: firefly-ai-categorize
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      # Required
+      - FIREFLY_URL=https://firefly.${DOMAIN_NAME}
+      - FIREFLY_PERSONAL_TOKEN=${FIREFLY_PERSONAL_TOKEN}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - LOG_LEVEL=info
+      # - LLM_MODEL=anthropic/claude-haiku-4.5
+      - SEARXNG_URL=https://searxng.${DOMAIN_NAME}
+      - SEARXNG_TIMEOUT=3000
+    volumes:
+      - /var/media-server/automation/firefly-ai-categorize/data:/app/data
+    networks:
+      - web
+      - default
